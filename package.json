@@ -1,0 +1,53 @@
+{
+  "name": "sidetime-admin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "npm run lint:check --fix",
+    "lint:check": "eslint . --ext .js,.jsx",
+    "prettier": "prettier --write '**/*.{ts,js,tsx,jsx,css,json,md,html,yml}'",
+    "prettier:check": "prettier -c '**/*.{ts,js,tsx,jsx,css,json,md,html,yml}'",
+    "format": " npm run prettier && npm run lint",
+    "format:check": "npm run prettier:check && npm run lint:check",
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.1",
+    "@mui/material": "^5.15.1",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-query": "^5.14.6",
+    "axios": "^1.6.2",
+    "classnames": "^2.3.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.21.1",
+    "react-top-loading-bar": "^2.3.1",
+    "redux-axios-middleware": "^4.0.1",
+    "redux-persist": "^6.0.0",
+    "serve": "^14.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^8.0.3",
+    "lodash": "^4.17.21",
+    "prettier": "^3.1.1",
+    "sass": "^1.69.5",
+    "vite": "^5.0.8",
+    "vite-plugin-svgr": "^4.2.0"
+  }
+}

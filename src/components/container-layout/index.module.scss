@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  &.container_with_menu_sidebar {
+    margin-left: 240px;
+  }
+
+  header,
+  footer {
+    flex-shrink: 0;
+  }
+
+  > div {
+    &:not(:global(.spinner-border)) {
+      flex-grow: 1;
+    }
+  }
+}
