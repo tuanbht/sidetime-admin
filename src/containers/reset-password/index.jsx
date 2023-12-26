@@ -5,19 +5,25 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
+import adminActions from '../../actions/admin-actions';
 
 import styles from './styles.module.scss';
 
 const ResetPassword = () => {
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      newPassword: data.get('newPassword'),
-      confirmPassword: data.get('confirmPassword'),
-    });
+
+    dispatch(
+      adminActions.resetPassword(searchParams.get('token'), data.get('newPassword'), data.get('confirmPassword')),
+    );
   };
 
   return (

@@ -8,9 +8,12 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import { toast } from 'react-toastify';
 
 import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
 import { SIGN_IN_PATH } from '../../constants/route-paths';
+import AxiosClient from '../../configurations/api-client';
+import { API_PASSWORD } from '../../constants/api-paths';
 
 import styles from './styles.module.scss';
 
@@ -18,9 +21,12 @@ const ForgotPassword = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-    });
+
+    AxiosClient.post(API_PASSWORD, { admin: { email: data.get('email') } })
+      .then(() => {
+        toast.success('You will receive an email with instructions on how to reset your password in a few minutes.');
+      })
+      .catch((error) => toast.error(error.response.data.message));
   };
 
   return (
