@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
+import { isLoadingApiSelector } from '../../selectors/loading-api-selector';
 
 import { LOADING_BAR_COLOR } from './constants';
 
-const LoadingApiAnimation = ({ autoRun = false }) => {
-  const isLoadingApi = false; //integrate with axios call apis
+const LoadingAnimation = ({ autoRun = false }) => {
+  const isLoadingApi = useSelector(isLoadingApiSelector);
 
   const loadingBarRef = useRef(null);
 
@@ -24,12 +27,12 @@ const LoadingApiAnimation = ({ autoRun = false }) => {
   return <LoadingBar color={LOADING_BAR_COLOR} ref={loadingBarRef} />;
 };
 
-LoadingApiAnimation.propTypes = {
+LoadingAnimation.propTypes = {
   autoRun: PropTypes.bool,
 };
 
-LoadingApiAnimation.defaultPropTypes = {
+LoadingAnimation.defaultPropTypes = {
   autoRun: false,
 };
 
-export default LoadingApiAnimation;
+export default LoadingAnimation;

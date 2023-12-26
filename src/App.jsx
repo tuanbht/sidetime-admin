@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 
 import { persistor, store } from './configurations/redux-store';
 import RouterConfiguration from './configurations/router';
+import BackJobsWrapper from './components/backjobs-wrapper';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,7 @@ const App = () => (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <QueryClientProvider client={queryClient}>
+          <BackJobsWrapper />
           <RouterConfiguration />
         </QueryClientProvider>
       </PersistGate>
