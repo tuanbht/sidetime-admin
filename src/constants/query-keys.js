@@ -1,0 +1,1 @@
+export const CURRENT_ADMIN = 'CURRENT_ADMIN';

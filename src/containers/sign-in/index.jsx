@@ -8,24 +8,38 @@ import NavigationLink from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
-import { FORGOT_PASSWORD_PATH } from '../../constants/route-paths';
+import { FORGOT_PASSWORD_PATH, ROOT_PATH } from '../../constants/route-paths';
 import adminActions from '../../actions/admin-actions';
+import { ActionSuccessType, SIGN_IN } from '../../constants/redux-actions';
+import { CURRENT_ADMIN } from '../../constants/query-keys';
 
 import styles from './styles.module.scss';
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    dispatch(adminActions.signIn(data));
+    dispatch(adminActions.signIn(data)).then((responseAction) => {
+      if (responseAction.type === ActionSuccessType(SIGN_IN)) {
+        queryClient.invalidateQueries({ queryKey: [CURRENT_ADMIN] });
+        redirect(ROOT_PATH);
+        toast.success('Sign in successfully!');
+      } else {
+        console.log(responseAction);
+        toast.error(responseAction);
+      }
+    });
   };
 
   return (
