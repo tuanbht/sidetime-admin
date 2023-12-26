@@ -6,24 +6,50 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
 import adminActions from '../../actions/admin-actions';
+import { ActionSuccessType, RESET_PASSWORD } from '../../constants/redux-actions';
+import { getErrorMessage } from '../../utilities/message';
+import { ROOT_PATH } from '../../constants/route-paths';
 
 import styles from './styles.module.scss';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
+
+  const resetPasswordMutation = useMutation({
+    mutationFn: async ({ token, newPassword, confirmPassword }) => {
+      const responseAction = await dispatch(adminActions.resetPassword(token, newPassword, confirmPassword));
+
+      if (responseAction.type === ActionSuccessType(RESET_PASSWORD)) {
+        return responseAction;
+      } else {
+        throw responseAction.error.response;
+      }
+    },
+    onSuccess: () => {
+      toast.success('Reset password successfully!');
+      navigate(ROOT_PATH);
+    },
+    onError: (data) => toast.error(getErrorMessage(data)),
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    dispatch(
-      adminActions.resetPassword(searchParams.get('token'), data.get('newPassword'), data.get('confirmPassword')),
-    );
+    resetPasswordMutation.mutate({
+      token: searchParams.get('token'),
+      newPassword: data.get('newPassword'),
+      confirmPassword: data.get('confirmPassword'),
+    });
   };
 
   return (
@@ -59,7 +85,13 @@ const ResetPassword = () => {
             label='Confirm Password'
             type='password'
           />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}
+            disabled={resetPasswordMutation.isPending}
+          >
             Reset password
           </Button>
         </Box>

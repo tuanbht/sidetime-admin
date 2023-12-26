@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   FORGOT_PASSWORD_PATH,
@@ -19,21 +18,16 @@ import ForgotPassword from '../containers/forgot-password';
 import Home from '../containers/home';
 import ResetPassword from '../containers/reset-password';
 import { useGetCurrentAdminQuery } from '../hooks/admin-hooks';
-import { ActionSuccessType, GET_CURRENT_ADMIN } from '../constants/redux-actions';
-import adminActions from '../actions/admin-actions';
 import ContainerLayout from '../components/container-layout';
-import { CURRENT_ADMIN } from '../constants/query-keys';
+import { isAuthenticatedAminSelector } from '../selectors/admin-selector';
+import adminActions from '../actions/admin-actions';
 
 const Router = () => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
 
-  const { data } = useGetCurrentAdminQuery();
+  useGetCurrentAdminQuery();
 
-  const signOutMutation = useMutation({
-    mutationFn: () => dispatch(adminActions.signOut()),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: [CURRENT_ADMIN] }),
-  });
+  const isAuthenticatedAmin = useSelector(isAuthenticatedAminSelector);
 
   const router = useMemo(
     () =>
@@ -42,7 +36,7 @@ const Router = () => {
           id: 'root',
           path: ROOT_PATH,
           loader() {
-            if (data && data.type !== ActionSuccessType(GET_CURRENT_ADMIN)) {
+            if (!isAuthenticatedAmin) {
               return redirect(SIGN_IN_PATH);
             }
 
@@ -61,7 +55,7 @@ const Router = () => {
           element: <ContainerLayout container={SignIn} />,
           title: 'Sign in',
           loader() {
-            if (data && data.type === ActionSuccessType(GET_CURRENT_ADMIN)) {
+            if (isAuthenticatedAmin) {
               return redirect(ROOT_PATH);
             }
 
@@ -74,7 +68,7 @@ const Router = () => {
           element: <ContainerLayout container={ForgotPassword} />,
           title: 'Forgot Password',
           loader() {
-            if (data && data.type === ActionSuccessType(GET_CURRENT_ADMIN)) {
+            if (isAuthenticatedAmin) {
               return redirect(ROOT_PATH);
             }
 
@@ -87,7 +81,7 @@ const Router = () => {
           element: <ContainerLayout container={ResetPassword} />,
           title: 'Reset Password',
           loader() {
-            if (data && data.type === ActionSuccessType(GET_CURRENT_ADMIN)) {
+            if (isAuthenticatedAmin) {
               return redirect(ROOT_PATH);
             }
 
@@ -97,7 +91,8 @@ const Router = () => {
         {
           path: SIGN_OUT_PATH,
           loader() {
-            signOutMutation.mutate();
+            dispatch(adminActions.signOut());
+
             return redirect(SIGN_IN_PATH);
           },
         },
@@ -112,7 +107,7 @@ const Router = () => {
           },
         },
       ]),
-    [data, signOutMutation],
+    [dispatch, isAuthenticatedAmin],
   );
 
   return <RouterProvider router={router} fallbackElement={<LoadingAnimation />} />;

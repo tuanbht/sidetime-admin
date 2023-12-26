@@ -7,10 +7,8 @@ import { CURRENT_ADMIN } from '../constants/query-keys';
 export const useGetCurrentAdminQuery = () => {
   const dispatch = useDispatch();
 
-  const query = useQuery({
+  return useQuery({
     queryKey: [CURRENT_ADMIN],
     queryFn: () => dispatch(adminActions.getCurrentAdmin()),
   });
-
-  return query;
 };
