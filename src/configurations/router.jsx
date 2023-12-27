@@ -25,7 +25,7 @@ import adminActions from '../actions/admin-actions';
 const Router = () => {
   const dispatch = useDispatch();
 
-  useGetCurrentAdminQuery();
+  const { isLoading } = useGetCurrentAdminQuery();
 
   const isAuthenticatedAmin = useSelector(isAuthenticatedAminSelector);
 
@@ -110,7 +110,7 @@ const Router = () => {
     [dispatch, isAuthenticatedAmin],
   );
 
-  return <RouterProvider router={router} fallbackElement={<LoadingAnimation />} />;
+  return isLoading ? <LoadingAnimation /> : <RouterProvider router={router} fallbackElement={<LoadingAnimation />} />;
 };
 
 export default Router;
