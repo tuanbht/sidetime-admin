@@ -52,7 +52,7 @@ const Router = () => {
         {
           path: SIGN_IN_PATH,
           exact: true,
-          element: <ContainerLayout container={SignIn} />,
+          element: <SignIn />,
           title: 'Sign in',
           loader() {
             if (isAuthenticatedAmin) {
@@ -65,7 +65,7 @@ const Router = () => {
         {
           path: FORGOT_PASSWORD_PATH,
           exact: true,
-          element: <ContainerLayout container={ForgotPassword} />,
+          element: <ForgotPassword />,
           title: 'Forgot Password',
           loader() {
             if (isAuthenticatedAmin) {
@@ -78,7 +78,7 @@ const Router = () => {
         {
           path: RESET_PASSWORD_PATH,
           exact: true,
-          element: <ContainerLayout container={ResetPassword} />,
+          element: <ResetPassword />,
           title: 'Reset Password',
           loader() {
             if (isAuthenticatedAmin) {
@@ -98,7 +98,7 @@ const Router = () => {
         },
         {
           path: NOT_FOUND_PATH,
-          element: <ContainerLayout container={NotFoundPage} />,
+          element: <NotFoundPage />,
         },
         {
           path: UNMATCHED_ROUTE_PATH,

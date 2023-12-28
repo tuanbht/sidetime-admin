@@ -10,17 +10,18 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
+import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import adminActions from '../../actions/admin-actions';
 import { ActionSuccessType, RESET_PASSWORD } from '../../constants/redux-actions';
 import { getErrorMessage } from '../../utilities/message';
 import { ROOT_PATH } from '../../constants/route-paths';
-
-import styles from './styles.module.scss';
+import commonStyles from '../../styles/common';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const commonClasses = commonStyles();
 
   const [searchParams] = useSearchParams();
 
@@ -57,6 +58,7 @@ const ResetPassword = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
+        minHeight: '100vh',
       }}
       maxWidth='xs'
     >
@@ -69,7 +71,7 @@ const ResetPassword = () => {
           width: 1,
         }}
       >
-        <SidetimeLogo className={styles.logo_icon} />
+        <SidetimeLogo className={commonClasses.logoIcon} />
 
         <Typography sx={{ mt: 2 }} variant='h4'>
           Reset Password

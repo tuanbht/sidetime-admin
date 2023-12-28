@@ -14,17 +14,18 @@ import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
+import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import { FORGOT_PASSWORD_PATH, ROOT_PATH } from '../../constants/route-paths';
 import adminActions from '../../actions/admin-actions';
 import { ActionSuccessType, SIGN_IN } from '../../constants/redux-actions';
 import { getErrorMessage } from '../../utilities/message';
-
-import styles from './styles.module.scss';
+import commonStyles from '../../styles/common';
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const commonClasses = commonStyles();
 
   const signInMutation = useMutation({
     mutationFn: async (data) => {
@@ -55,6 +56,7 @@ const SignIn = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
+        minHeight: '100vh',
       }}
       maxWidth='xs'
     >
@@ -67,7 +69,7 @@ const SignIn = () => {
           width: 1,
         }}
       >
-        <SidetimeLogo className={styles.logo_icon} />
+        <SidetimeLogo className={commonClasses.logoIcon} />
 
         <Typography sx={{ mt: 2 }} variant='h4'>
           Sidetime Login
@@ -94,7 +96,10 @@ const SignIn = () => {
             id='password'
             autoComplete='current-password'
           />
-          <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
+          <FormControlLabel
+            control={<Checkbox value='remember' name='session[rememberMe]' color='primary' />}
+            label='Remember me'
+          />
           <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }} disabled={signInMutation.isPending}>
             Sign In
           </Button>

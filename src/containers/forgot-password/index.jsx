@@ -10,16 +10,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 
-import SidetimeLogo from '../../assets/sidetime-logo.svg?react';
+import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import { SIGN_IN_PATH } from '../../constants/route-paths';
 import AxiosClient from '../../configurations/api-client';
 import { API_PASSWORD } from '../../constants/api-paths';
 import { getErrorMessage } from '../../utilities/message';
-
-import styles from './styles.module.scss';
+import commonStyles from '../../styles/common';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+
+  const commonClasses = commonStyles();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,6 +39,7 @@ const ForgotPassword = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
+        minHeight: '100vh',
       }}
       maxWidth='xs'
     >
@@ -50,7 +52,7 @@ const ForgotPassword = () => {
           width: 1,
         }}
       >
-        <SidetimeLogo className={styles.logo_icon} />
+        <SidetimeLogo className={commonClasses.logoIcon} />
 
         <Typography sx={{ mt: 2 }} variant='h4'>
           Forgot Password?
