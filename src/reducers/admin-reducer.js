@@ -1,6 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import omit from 'lodash/omit';
 import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 
 import {
   ActionSuccessType,

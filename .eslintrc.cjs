@@ -68,6 +68,10 @@ module.exports = {
       'error',
       {
         'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
       },
     ],
     'import/named': ['off'],

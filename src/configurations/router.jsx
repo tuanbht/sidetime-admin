@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react';
-import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import adminActions from '../actions/admin-actions';
+import ContainerLayout from '../components/container-layout';
+import LoadingAnimation from '../components/loading-animation';
 import {
   FORGOT_PASSWORD_PATH,
   NOT_FOUND_PATH,
@@ -11,23 +15,20 @@ import {
   SIGN_OUT_PATH,
   UNMATCHED_ROUTE_PATH,
 } from '../constants/route-paths';
-import SignIn from '../containers/sign-in';
-import LoadingAnimation from '../components/loading-animation';
-import NotFoundPage from '../containers/not-found';
 import ForgotPassword from '../containers/forgot-password';
 import Home from '../containers/home';
+import NotFoundPage from '../containers/not-found';
 import ResetPassword from '../containers/reset-password';
+import SignIn from '../containers/sign-in';
 import { useGetCurrentAdminQuery } from '../hooks/admin-hooks';
-import ContainerLayout from '../components/container-layout';
-import { isAuthenticatedAminSelector } from '../selectors/admin-selector';
-import adminActions from '../actions/admin-actions';
+import { isAuthenticatedAdminSelector } from '../selectors/admin-selector';
 
 const Router = () => {
   const dispatch = useDispatch();
 
   const { isLoading } = useGetCurrentAdminQuery();
 
-  const isAuthenticatedAmin = useSelector(isAuthenticatedAminSelector);
+  const isAuthenticatedAmin = useSelector(isAuthenticatedAdminSelector);
 
   const router = useMemo(
     () =>
@@ -92,6 +93,7 @@ const Router = () => {
           path: SIGN_OUT_PATH,
           loader() {
             dispatch(adminActions.signOut());
+            toast.success('Sign out successfully!');
 
             return redirect(SIGN_IN_PATH);
           },

@@ -4,7 +4,6 @@ import { makeStyles } from '@mui/styles';
 export default makeStyles((theme) => ({
   header: {
     display: 'flex',
-    width: '100vw',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
@@ -47,16 +46,13 @@ export default makeStyles((theme) => ({
       },
     },
   },
-  avatar: {
-    marginRight: theme.spacing(2),
-  },
   defaultAvatar: {
     width: '100%',
   },
   userInfo: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
   },
   userName: {
     fontSize: '16px',

@@ -1,13 +1,13 @@
-import axiosMiddleware from 'redux-axios-middleware';
+import { configureStore } from '@reduxjs/toolkit';
 import get from 'lodash/get';
 import merge from 'lodash/merge';
-import { configureStore } from '@reduxjs/toolkit';
+import axiosMiddleware from 'redux-axios-middleware';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import authTokenActions from '../actions/auth-token-actions';
 import loadingApiActions from '../actions/loading-api-actions';
 import reducers from '../reducers';
-import authTokenActions from '../actions/auth-token-actions';
 
 import AxiosClient from './api-client';
 

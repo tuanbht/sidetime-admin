@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import LoadingBar from 'react-top-loading-bar';
 import PropTypes from 'prop-types';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import LoadingBar from 'react-top-loading-bar';
 
 import { isLoadingApiSelector } from '../../selectors/loading-api-selector';
 

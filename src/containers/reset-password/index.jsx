@@ -1,21 +1,21 @@
-import React from 'react';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useMutation } from '@tanstack/react-query';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import adminActions from '../../actions/admin-actions';
+import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import { ActionSuccessType, RESET_PASSWORD } from '../../constants/redux-actions';
-import { getErrorMessage } from '../../utilities/message';
 import { ROOT_PATH } from '../../constants/route-paths';
 import commonStyles from '../../styles/common';
+import { getErrorMessage } from '../../utilities/message';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();

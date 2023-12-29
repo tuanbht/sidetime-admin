@@ -1,19 +1,33 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import Logout from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputBase } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import defaultAvatarUrl from '../../assets/images/default-avatar.png';
+import { SIGN_OUT_PATH } from '../../constants/route-paths';
+import { adminSelector } from '../../selectors/admin-selector';
 
 import headerStyles from './styles';
 
 const Header = () => {
   const classes = headerStyles();
 
-  const { user } = {
-    user: { name: 'Admin Name', role: 'Program Admin' },
-  };
+  const admin = useSelector(adminSelector);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClickAvatar = (event) => setAnchorEl(event.currentTarget);
+
+  const handleCloseAvatarMenu = () => setAnchorEl(null);
 
   return (
     <header className={classes.header}>
@@ -23,15 +37,44 @@ const Header = () => {
         </div>
         <InputBase placeholder='Search…' inputProps={{ 'aria-label': 'search' }} className={classes.searchInput} />
       </div>
-      <Avatar src={user.avatar} alt='User Avatar' className={classes.avatar}>
-        <img src={defaultAvatarUrl} className={classes.defaultAvatar} />
-      </Avatar>
+      <Tooltip title='Account settings'>
+        <IconButton
+          onClick={handleClickAvatar}
+          size='small'
+          sx={{ mr: 2 }}
+          aria-controls={open ? 'account-menu' : undefined}
+          aria-haspopup='true'
+          aria-expanded={open ? 'true' : undefined}
+        >
+          <Avatar src={admin.avatar} alt='Admin Avatar'>
+            <img src={defaultAvatarUrl} className={classes.defaultAvatar} />
+          </Avatar>
+        </IconButton>
+      </Tooltip>
+
+      <Menu
+        anchorEl={anchorEl}
+        id='account-menu'
+        open={Boolean(anchorEl)}
+        onClose={handleCloseAvatarMenu}
+        onClick={handleCloseAvatarMenu}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem component={Link} to={SIGN_OUT_PATH} onClick={handleCloseAvatarMenu}>
+          <ListItemIcon>
+            <Logout fontSize='small' />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
+
       <div className={classes.userInfo}>
         <Typography variant='h6' className={classes.userName}>
-          {user.name}
+          {admin.name}
         </Typography>
         <Typography variant='body2' className={classes.userRole}>
-          {user.role}
+          {admin.role || 'Admin'}
         </Typography>
       </div>
     </header>

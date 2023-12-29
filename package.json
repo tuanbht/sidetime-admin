@@ -7,7 +7,7 @@
     "start": "serve dist",
     "dev": "vite",
     "build": "vite build",
-    "lint": "npm run lint:check --fix",
+    "lint": "eslint . --ext .js,.jsx --fix",
     "lint:check": "eslint . --ext .js,.jsx",
     "prettier": "prettier --write '**/*.{ts,js,tsx,jsx,css,json,md,html,yml}'",
     "prettier:check": "prettier -c '**/*.{ts,js,tsx,jsx,css,json,md,html,yml}'",

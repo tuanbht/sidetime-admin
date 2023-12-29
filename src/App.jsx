@@ -1,12 +1,12 @@
+import { ThemeProvider } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@mui/material';
 
+import BackJobsWrapper from './components/backjobs-wrapper';
 import { persistor, store } from './configurations/redux-store';
 import RouterConfiguration from './configurations/router';
-import BackJobsWrapper from './components/backjobs-wrapper';
 import { theme } from './styles/mui-theme';
 
 const queryClient = new QueryClient({

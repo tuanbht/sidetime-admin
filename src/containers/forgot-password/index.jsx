@@ -1,21 +1,21 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import NavigationLink from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Link, useNavigate } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import NavigationLink from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
-import { SIGN_IN_PATH } from '../../constants/route-paths';
 import AxiosClient from '../../configurations/api-client';
 import { API_PASSWORD } from '../../constants/api-paths';
-import { getErrorMessage } from '../../utilities/message';
+import { SIGN_IN_PATH } from '../../constants/route-paths';
 import commonStyles from '../../styles/common';
+import { getErrorMessage } from '../../utilities/message';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

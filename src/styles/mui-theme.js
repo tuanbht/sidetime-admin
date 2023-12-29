@@ -13,6 +13,11 @@ export const theme = createTheme({
     manatee: '#8A92A6',
     ebonyClay: '#232D42',
     athensGray: '#E9ECEF',
+    hitGray: '#ADB5BD',
+    royalBlue: {
+      main: '#3A57E8',
+      hover: '#3a57e84d',
+    },
   },
   components: {
     MuiCssBaseline: {
