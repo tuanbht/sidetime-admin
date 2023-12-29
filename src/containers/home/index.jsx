@@ -1,26 +1,23 @@
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import SvgIcon from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import HeaderBackground from '../../assets/images/dashboard-header-bg.svg?react';
+import headerBackgroundUrl from '../../assets/images/dashboard-header-bg.svg';
 import { SIGN_IN_PATH, SIGN_OUT_PATH } from '../../constants/route-paths';
 
-export default function Home() {
+import useHomeStyles from './styles';
+
+const Home = () => {
+  const homeStyles = useHomeStyles();
+
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Container sx={homeStyles.container}>
       <CssBaseline />
-      <SvgIcon component={HeaderBackground} sx={{ width: '100vw', height: 1 }} viewBox='0 0 1663 27' />
+      <Box component='img' src={headerBackgroundUrl} sx={homeStyles.headerBackground} />
       <Typography variant='h1' sx={{ mb: 3 }}>
         Home
       </Typography>
@@ -32,4 +29,6 @@ export default function Home() {
       </Button>
     </Container>
   );
-}
+};
+
+export default Home;

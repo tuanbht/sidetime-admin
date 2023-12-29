@@ -7,6 +7,7 @@ export const CLEAR_AUTH_TOKEN = 'CLEAR_AUTH_TOKEN';
 export const SIGN_IN = 'SIGN_IN';
 export const GET_CURRENT_ADMIN = 'GET_CURRENT_ADMIN';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const SELECT_SITE = 'SELECT_SITE';
 
 export const ActionSuccessType = (action) => action.concat(SUCCESS_SUFFIX);
 

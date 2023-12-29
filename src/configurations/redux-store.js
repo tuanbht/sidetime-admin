@@ -14,7 +14,7 @@ import AxiosClient from './api-client';
 const persistConfig = {
   key: import.meta.env.VITE_WEBAPP_NAME,
   storage,
-  whitelist: ['authToken'],
+  whitelist: ['authToken', 'site'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
