@@ -1,30 +1,37 @@
 import { useTheme } from '@mui/styles';
+import { useMemo } from 'react';
 
 const useSibarMenuStyles = (open) => {
   const theme = useTheme();
 
   const drawerWidth = 240;
 
-  const openedMixin = (theme) => ({
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+  const openedMixin = useMemo(
+    () => ({
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      overflowX: 'hidden',
     }),
-    overflowX: 'hidden',
-  });
+    [theme],
+  );
 
-  const closedMixin = (theme) => ({
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+  const closedMixin = useMemo(
+    () => ({
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      width: `calc(${theme.spacing(7)} + 1px)`,
+      [theme.breakpoints.up('sm')]: {
+        width: `calc(${theme.spacing(8)} + 1px)`,
+      },
     }),
-    overflowX: 'hidden',
-    width: `calc(${theme.spacing(7)} + 1px)`,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(${theme.spacing(8)} + 1px)`,
-    },
-  });
+    [theme],
+  );
 
   return {
     boxContainer: {
@@ -36,12 +43,12 @@ const useSibarMenuStyles = (open) => {
       whiteSpace: 'nowrap',
       boxSizing: 'border-box',
       ...(open && {
-        ...openedMixin(theme),
-        '& .MuiDrawer-paper': openedMixin(theme),
+        ...openedMixin,
+        '& .MuiDrawer-paper': openedMixin,
       }),
       ...(!open && {
-        ...closedMixin(theme),
-        '& .MuiDrawer-paper': closedMixin(theme),
+        ...closedMixin,
+        '& .MuiDrawer-paper': closedMixin,
       }),
     },
     drawerHeader: {

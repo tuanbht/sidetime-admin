@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import BackJobsWrapper from './components/backjobs-wrapper';
 import { persistor, store } from './configurations/redux-store';
 import RouterConfiguration from './configurations/router';
-import { theme } from './styles/mui-theme';
+import theme from './styles/mui-theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {

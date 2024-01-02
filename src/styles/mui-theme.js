@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material';
 // font is not working
 import InterFonts from '../assets/fonts/inter-fonts.ttf';
 
-export const theme = createTheme({
+const theme = createTheme({
   typography: {
     fontFamily: ['Inter', 'Arial'].join(','),
   },
@@ -36,3 +36,5 @@ export const theme = createTheme({
     },
   },
 });
+
+export default theme;
