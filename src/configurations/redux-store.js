@@ -9,7 +9,7 @@ import authTokenActions from '../actions/auth-token-actions';
 import loadingApiActions from '../actions/loading-api-actions';
 import reducers from '../reducers';
 
-import AxiosClient from './api-client';
+import ApiClient from './api-client';
 
 const persistConfig = {
   key: import.meta.env.VITE_WEBAPP_NAME,
@@ -73,7 +73,7 @@ const middleware = (getDefaultMiddleware) =>
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       ignoredActionPaths: ['payload.request'],
     },
-  }).concat(axiosMiddleware(AxiosClient, axiosMiddlewareConfig));
+  }).concat(axiosMiddleware(ApiClient, axiosMiddlewareConfig));
 
 const store = configureStore({
   reducer: persistedReducer,

@@ -26,6 +26,14 @@ const useTenantInfosStyles = () => {
     },
     filterredYear: {
       color: theme.palette.common.white,
+      boxShadow: 'unset',
+    },
+    selectYearButton: {
+      background: 'transparent',
+
+      '&:hover': {
+        background: 'transparent',
+      },
     },
     cardBlock: {
       width: '230px',

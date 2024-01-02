@@ -1,21 +1,48 @@
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import headerBackgroundUrl from '../../../assets/images/dashboard-header-bg.svg';
+import { useGetSiteInfos } from '../../../hooks/site-hooks';
 import { siteSelector } from '../../../selectors/site-selector';
 import { randomPercent } from '../../../utilities/math';
 
+import { FILTERING_YEARS } from './contants';
 import useTenantInfosStyles from './styles';
 
 const TenantInfos = () => {
   const styles = useTenantInfosStyles();
   const site = useSelector(siteSelector);
+
+  const [yearsMenuEl, setYearsMenuEl] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(FILTERING_YEARS[0]);
+  const isYearsMenuOpen = Boolean(yearsMenuEl);
+
+  const { data } = useGetSiteInfos(site.id, selectedYear.value);
+  console.log(data);
+
+  const handleCloseYearsMenu = () => {
+    setYearsMenuEl(null);
+  };
+
+  const handleClickYearsDropdown = (event) => {
+    setYearsMenuEl(event.currentTarget);
+  };
+
+  const handleClickYear = (option) => {
+    setSelectedYear(option);
+    setYearsMenuEl(null);
+  };
 
   return (
     <Box sx={{ mt: 2 }}>
@@ -24,9 +51,38 @@ const TenantInfos = () => {
         <Typography variant='h3' sx={styles.siteName}>
           {site.name}
         </Typography>
-        <Typography variant='h5' sx={styles.filterredYear}>
-          Year-to-date Overview (Jan 1, 2023 - Today)
-        </Typography>
+
+        <ButtonGroup variant='contained' aria-label='split button' sx={styles.filterredYear}>
+          <Typography variant='h5'>Year-to-date Overview ({selectedYear.label})</Typography>
+          <Button
+            size='small'
+            aria-label='select year'
+            aria-haspopup='menu'
+            onClick={handleClickYearsDropdown}
+            sx={styles.selectYearButton}
+          >
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>
+        <Menu
+          anchorEl={yearsMenuEl}
+          open={isYearsMenuOpen}
+          onClose={handleCloseYearsMenu}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          {FILTERING_YEARS.map((option, index) => (
+            <MenuItem key={index} onClick={() => handleClickYear(option)}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Menu>
       </Box>
 
       <Grid container spacing={3} columns={{ xs: 1, sm: 2, md: 3, lg: 6 }}>

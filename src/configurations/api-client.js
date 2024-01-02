@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { API_BASE_URL } from '../constants/api-paths';
 
-const AxiosClient = axios.create({
+const ApiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     Accept: 'application/json',
@@ -11,4 +11,4 @@ const AxiosClient = axios.create({
   },
 });
 
-export default AxiosClient;
+export default ApiClient;

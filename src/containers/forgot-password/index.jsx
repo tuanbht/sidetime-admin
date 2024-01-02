@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
-import AxiosClient from '../../configurations/api-client';
+import ApiClient from '../../configurations/api-client';
 import { API_PASSWORD } from '../../constants/api-paths';
 import { SIGN_IN_PATH } from '../../constants/route-paths';
 import commonStyles from '../../styles/common';
@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    AxiosClient.post(API_PASSWORD, { admin: { email: data.get('email') } })
+    ApiClient.post(API_PASSWORD, { admin: { email: data.get('email') } })
       .then(() => {
         toast.success('You will receive an email with instructions on how to reset your password in a few minutes.');
         navigate(SIGN_IN_PATH);
