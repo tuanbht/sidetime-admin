@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import { IntercomProvider } from 'react-use-intercom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
-import BackJobsWrapper from './components/backjobs-wrapper';
-import { persistor, store } from './configurations/redux-store';
-import RouterConfiguration from './configurations/router';
-import theme from './styles/mui-theme';
+import BackJobsWrapper from '../components/backjobs-wrapper';
+import { persistor, store } from '../configurations/redux-store';
+import RouterConfiguration from '../configurations/router';
+import theme from '../styles/mui-theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
+const Application = () => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -33,4 +33,4 @@ const App = () => (
   </ThemeProvider>
 );
 
-export default App;
+export default Application;

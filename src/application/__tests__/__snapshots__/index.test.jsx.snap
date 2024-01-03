@@ -1,0 +1,251 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`application > renders template 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class=""
+          style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+        >
+          <div
+            class=""
+            style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+          >
+            <div
+              style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+            />
+          </div>
+        </div>
+        <div
+          class="Toastify"
+        />
+      </div>
+      <div
+        class=""
+        style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+      >
+        <div
+          class=""
+          style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+        >
+          <div
+            style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class=""
+        style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+      >
+        <div
+          class=""
+          style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+        >
+          <div
+            style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+          />
+        </div>
+      </div>
+      <div
+        class="Toastify"
+      />
+    </div>
+    <div
+      class=""
+      style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+    >
+      <div
+        class=""
+        style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+      >
+        <div
+          style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`application > should render 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class=""
+          style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+        >
+          <div
+            class=""
+            style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+          >
+            <div
+              style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+            />
+          </div>
+        </div>
+        <div
+          class="Toastify"
+        />
+      </div>
+      <div
+        class=""
+        style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+      >
+        <div
+          class=""
+          style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+        >
+          <div
+            style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class=""
+        style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+      >
+        <div
+          class=""
+          style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+        >
+          <div
+            style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+          />
+        </div>
+      </div>
+      <div
+        class="Toastify"
+      />
+    </div>
+    <div
+      class=""
+      style="position: fixed; top: 0px; left: 0px; height: 2px; background: transparent; z-index: 99999999999; width: 100%;"
+    >
+      <div
+        class=""
+        style="height: 100%; background: rgb(241, 25, 70); transition: all 500ms ease; width: 100%;"
+      >
+        <div
+          style="box-shadow: 0 0 10px #f11946, 0 0 10px #f11946; width: 5%; opacity: 1; position: absolute; height: 100%; transition: all 500ms ease; transform: rotate(3deg) translate(0px, -4px); left: 90%;"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
