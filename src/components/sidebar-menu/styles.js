@@ -104,7 +104,6 @@ const useSibarMenuStyles = (open) => {
       mr: open ? 3 : 'auto',
       justifyContent: 'center',
     },
-    mainContainer: { flexGrow: 1, p: 5, width: 'calc(100% - 240px)' },
   };
 };
 

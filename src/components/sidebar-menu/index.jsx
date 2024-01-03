@@ -75,9 +75,7 @@ const SidebarMenu = ({ children }) => {
           <SiteMenuItems open={open} />
         </List>
       </Drawer>
-      <Box component='main' sx={sideBarMenuStyles.mainContainer}>
-        {children}
-      </Box>
+      {children}
     </Box>
   );
 };

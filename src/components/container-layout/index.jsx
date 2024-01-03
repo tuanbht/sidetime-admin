@@ -1,16 +1,21 @@
+import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Header from '../header';
 import SidebarMenu from '../sidebar-menu';
 
+import useContainerLayoutStyles from './styles';
+
 const ContainerLayout = ({ container: Container }) => {
-  console.log('ContainerLayout');
+  const styles = useContainerLayoutStyles();
 
   return (
     <SidebarMenu>
-      <Header />
-      <Container />
+      <Box component='main' sx={styles.mainContainer}>
+        <Header />
+        <Container />
+      </Box>
     </SidebarMenu>
   );
 };

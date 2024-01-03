@@ -1,14 +1,15 @@
 import Logout from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,10 +18,10 @@ import defaultAvatarUrl from '../../assets/images/default-avatar.png';
 import { SIGN_OUT_PATH } from '../../constants/route-paths';
 import { adminSelector } from '../../selectors/admin-selector';
 
-import headerStyles from './styles';
+import useHeaderStyles from './styles';
 
 const Header = () => {
-  const classes = headerStyles();
+  const styles = useHeaderStyles();
 
   const admin = useSelector(adminSelector);
 
@@ -31,13 +32,13 @@ const Header = () => {
   const handleCloseAvatarMenu = () => setAnchorEl(null);
 
   return (
-    <Paper component='header' className={classes.header}>
-      <div className={classes.search}>
-        <div className={classes.searchIconWrapper}>
+    <Paper component='header' sx={styles.header}>
+      <Box sx={styles.search}>
+        <Box sx={styles.searchIconWrapper}>
           <SearchIcon />
-        </div>
-        <InputBase placeholder='Search…' inputProps={{ 'aria-label': 'search' }} className={classes.searchInput} />
-      </div>
+        </Box>
+        <InputBase placeholder='Search…' inputProps={{ 'aria-label': 'search' }} sx={styles.searchInput} />
+      </Box>
       <Tooltip title='Account settings'>
         <IconButton
           onClick={handleClickAvatar}
@@ -48,7 +49,7 @@ const Header = () => {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar src={admin.avatar} alt='Admin Avatar'>
-            <img src={defaultAvatarUrl} className={classes.defaultAvatar} />
+            <Box component='img' src={defaultAvatarUrl} sx={styles.defaultAvatar} />
           </Avatar>
         </IconButton>
       </Tooltip>
@@ -70,14 +71,14 @@ const Header = () => {
         </MenuItem>
       </Menu>
 
-      <div className={classes.userInfo}>
-        <Typography variant='h6' className={classes.userName}>
+      <Box sx={styles.userInfo}>
+        <Typography variant='h6' sx={styles.userName}>
           {admin.name}
         </Typography>
-        <Typography variant='body2' className={classes.userRole}>
+        <Typography variant='subtitle1' sx={styles.userRole}>
           {admin.role || 'Admin'}
         </Typography>
-      </div>
+      </Box>
     </Paper>
   );
 };
