@@ -18,11 +18,13 @@ import {
   SESSIONS_PATH,
   USERS_PATH,
 } from '../../constants/route-paths';
+import useCommonStyles from '../../styles/common';
 
 import useSibarMenuStyles from './styles';
 
 const AdminMenuItems = ({ open }) => {
-  const sideBarMenuStyles = useSibarMenuStyles(open);
+  const styles = useSibarMenuStyles(open);
+  const commonStyles = useCommonStyles();
 
   const menuItems = [
     {
@@ -58,11 +60,11 @@ const AdminMenuItems = ({ open }) => {
   ];
 
   return menuItems.map((item) => (
-    <ListItem disablePadding sx={{ display: 'block' }} key={item.label}>
-      <Link component={NavLink} to={item.to} sx={sideBarMenuStyles.menuLink}>
-        <ListItemButton sx={sideBarMenuStyles.linkItemButton}>
-          <ListItemIcon sx={sideBarMenuStyles.linkItemIcon}>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.label} sx={{ opacity: open ? 1 : 0 }} />
+    <ListItem disablePadding sx={commonStyles.displayBlock} key={item.label}>
+      <Link component={NavLink} to={item.to} sx={styles.menuLink}>
+        <ListItemButton sx={styles.linkItemButton}>
+          <ListItemIcon sx={styles.linkItemIcon}>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.label} sx={styles.linkItemLabel} />
         </ListItemButton>
       </Link>
     </ListItem>

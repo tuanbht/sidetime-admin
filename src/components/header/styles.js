@@ -53,6 +53,7 @@ const useHeaderStyles = () => {
         },
       },
     },
+    avatarButton: { mr: 2 },
     defaultAvatar: {
       width: '100%',
     },

@@ -43,7 +43,7 @@ const Header = () => {
         <IconButton
           onClick={handleClickAvatar}
           size='small'
-          sx={{ mr: 2 }}
+          sx={styles.avatarButton}
           aria-controls={open ? 'account-menu' : undefined}
           aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}

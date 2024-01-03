@@ -38,7 +38,7 @@ const TopGuides = ({ selectedYear }) => {
   };
 
   return (
-    <Box sx={{ mt: 10 }}>
+    <Box sx={styles.container}>
       <Grid container columns={{ xs: 1, lg: 3 }}>
         <Grid item xs={1} lg={2}>
           <Paper elevation={12}>

@@ -2,9 +2,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Icon from '@mui/material/Icon';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -12,16 +14,21 @@ import { toast } from 'react-toastify';
 
 import adminActions from '../../actions/admin-actions';
 import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
+import { CURRENT_ADMIN } from '../../constants/query-keys';
 import { ActionSuccessType, RESET_PASSWORD } from '../../constants/redux-actions';
 import { ROOT_PATH } from '../../constants/route-paths';
-import commonStyles from '../../styles/common';
+import useCommonStyles from '../../styles/common';
 import { getErrorMessage } from '../../utilities/message';
+
+import useResetPasswordStyles from './styles';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const commonClasses = commonStyles();
+  const commonStyles = useCommonStyles();
+  const styles = useResetPasswordStyles();
 
   const [searchParams] = useSearchParams();
 
@@ -36,6 +43,8 @@ const ResetPassword = () => {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [CURRENT_ADMIN] });
+
       toast.success('Reset password successfully!');
       navigate(ROOT_PATH);
     },
@@ -54,30 +63,15 @@ const ResetPassword = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        minHeight: '100vh',
-      }}
-      maxWidth='xs'
-    >
+    <Container sx={styles.container} maxWidth='xs'>
       <CssBaseline />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: 1,
-        }}
-      >
-        <SidetimeLogo className={commonClasses.logoIcon} />
-
-        <Typography sx={{ mt: 2 }} variant='h4'>
+      <Paper sx={styles.resetPasswordContainer} elevation={8}>
+        <Icon component={SidetimeLogo} sx={commonStyles.logoIcon} />
+        <Typography sx={styles.title} variant='h4'>
           Reset Password
         </Typography>
 
-        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: 1 }}>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={styles.formContainer}>
           <TextField margin='normal' required fullWidth name='newPassword' label='New Password' type='password' />
           <TextField
             margin='normal'
@@ -91,13 +85,13 @@ const ResetPassword = () => {
             type='submit'
             fullWidth
             variant='contained'
-            sx={{ mt: 3, mb: 2 }}
+            sx={styles.submitButton}
             disabled={resetPasswordMutation.isPending}
           >
             Reset password
           </Button>
         </Box>
-      </Box>
+      </Paper>
     </Container>
   );
 };

@@ -7,21 +7,15 @@ import { Link } from 'react-router-dom';
 
 import { ROOT_PATH } from '../../constants/route-paths';
 
+import useNotFoundStyles from './styles';
+
 export default function NotFoundPage() {
+  const styles = useNotFoundStyles();
+
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-      }}
-    >
+    <Container sx={styles.container}>
       <CssBaseline />
-      <Typography variant='h1' sx={{ mb: 3 }}>
-        404
-      </Typography>
+      <Typography variant='h1'>404</Typography>
       <Typography variant='subtitle1'>Oops! Page not found.</Typography>
       <Button component={Link} to={ROOT_PATH} variant='contained' color='primary'>
         Go Home

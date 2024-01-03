@@ -6,8 +6,8 @@ const useHomeStyles = () => {
   return {
     container: {},
     headerBackground: {
-      width: '100%',
-      height: '320px',
+      width: 1,
+      height: '360px',
       position: 'absolute',
       zIndex: -1,
       top: 0,

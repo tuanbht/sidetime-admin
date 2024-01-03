@@ -4,6 +4,7 @@ const useTenantInfosStyles = () => {
   const theme = useTheme();
 
   return {
+    container: { mt: 2 },
     cardBlock: {
       height: '120px',
       padding: theme.spacing(1),
@@ -11,6 +12,7 @@ const useTenantInfosStyles = () => {
       alignItems: 'center',
       justifyContent: 'space-evenly',
     },
+    progressCircleContainer: { position: 'relative', display: 'inline-flex' },
     progressCircle: {
       width: '40px',
       height: '40px',

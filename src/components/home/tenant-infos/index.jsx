@@ -17,12 +17,12 @@ const TenantInfos = ({ selectedYear }) => {
   const { data } = useGetSiteInfos(selectedYear);
 
   return (
-    <Box sx={{ mt: 2 }}>
+    <Box sx={styles.container}>
       <Grid container columns={{ xs: 1, sm: 2, md: 3, lg: 6 }} spacing={{ xs: 3, sm: 6, lg: 1, xl: 10, xxl: 16 }}>
         {data.map((info, index) => (
           <Grid item xs={1} key={index} xxl={3}>
             <Card sx={styles.cardBlock}>
-              <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+              <Box sx={styles.progressCircleContainer}>
                 <CircularProgress variant='determinate' size='' value={info.percent} sx={styles.progressCircle} />
                 <Box sx={styles.arrowIcon}>
                   <ArrowOutwardIcon />

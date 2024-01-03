@@ -1,9 +1,14 @@
-import { makeStyles } from '@mui/styles';
-
-const commonStyles = makeStyles(() => ({
+const useCommonStyles = () => ({
   logoIcon: {
-    height: '40px',
+    width: '120px',
+    height: 'auto',
   },
-}));
+  displayFlex: {
+    display: 'flex',
+  },
+  displayBlock: {
+    display: 'block',
+  },
+});
 
-export default commonStyles;
+export default useCommonStyles;

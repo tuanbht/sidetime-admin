@@ -23,7 +23,7 @@ export const useGetSiteInfos = (year) => {
   ]);
 
   const query = useQuery({
-    queryKey: ['infos', year],
+    queryKey: [siteId, 'infos', year],
     queryFn: async () => {
       const response = await ApiClient.get(buildApiGetSiteInfos(siteId), { params: { year } });
 

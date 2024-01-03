@@ -1,8 +1,11 @@
 import { useTheme } from '@mui/styles';
 import { useMemo } from 'react';
 
+import useCommonStyles from '../../styles/common';
+
 const useSibarMenuStyles = (open) => {
   const theme = useTheme();
+  const commonStyles = useCommonStyles();
 
   const drawerWidth = 240;
 
@@ -60,8 +63,7 @@ const useSibarMenuStyles = (open) => {
       ...theme.mixins.toolbar,
     },
     logo: {
-      width: '120px',
-      height: 'auto',
+      ...commonStyles.logoIcon,
       marginBottom: theme.spacing(1),
       marginRight: 'auto',
       marginLeft: 'auto',
@@ -103,6 +105,9 @@ const useSibarMenuStyles = (open) => {
       minWidth: 0,
       mr: open ? 3 : 'auto',
       justifyContent: 'center',
+    },
+    linkItemLabel: {
+      opacity: open ? 1 : 0,
     },
   };
 };

@@ -3,7 +3,9 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
 import NavigationLink from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
@@ -14,19 +16,22 @@ import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
 import ApiClient from '../../configurations/api-client';
 import { API_PASSWORD } from '../../constants/api-paths';
 import { SIGN_IN_PATH } from '../../constants/route-paths';
-import commonStyles from '../../styles/common';
+import useCommonStyles from '../../styles/common';
 import { getErrorMessage } from '../../utilities/message';
+
+import useForgotPasswordStyles from './styles';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const commonClasses = commonStyles();
+  const commonStyles = useCommonStyles();
+  const styles = useForgotPasswordStyles();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    ApiClient.post(API_PASSWORD, { admin: { email: data.get('email') } })
+    ApiClient.post(API_PASSWORD, data)
       .then(() => {
         toast.success('You will receive an email with instructions on how to reset your password in a few minutes.');
         navigate(SIGN_IN_PATH);
@@ -35,41 +40,27 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        minHeight: '100vh',
-      }}
-      maxWidth='xs'
-    >
+    <Container sx={styles.container} maxWidth='xs'>
       <CssBaseline />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: 1,
-        }}
-      >
-        <SidetimeLogo className={commonClasses.logoIcon} />
+      <Paper sx={styles.forgotPasswordContainer}>
+        <Icon component={SidetimeLogo} sx={commonStyles.logoIcon} />
 
-        <Typography sx={{ mt: 2 }} variant='h4'>
+        <Typography sx={styles.title} variant='h4'>
           Forgot Password?
         </Typography>
 
-        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: 1 }}>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={styles.formContainer}>
           <TextField
             margin='normal'
             required
             fullWidth
             id='email'
             label='Email Address'
-            name='email'
+            name='admin[email]'
             autoComplete='email'
             autoFocus
           />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+          <Button type='submit' fullWidth variant='contained' sx={styles.submitButton}>
             Send
           </Button>
           <Grid container>
@@ -80,7 +71,7 @@ const ForgotPassword = () => {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Paper>
     </Container>
   );
 };

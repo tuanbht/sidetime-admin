@@ -5,10 +5,12 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
 import NavigationLink from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,16 +18,21 @@ import { toast } from 'react-toastify';
 
 import adminActions from '../../actions/admin-actions';
 import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
+import { CURRENT_ADMIN } from '../../constants/query-keys';
 import { ActionSuccessType, SIGN_IN } from '../../constants/redux-actions';
 import { FORGOT_PASSWORD_PATH, ROOT_PATH } from '../../constants/route-paths';
-import commonStyles from '../../styles/common';
+import useCommonStyles from '../../styles/common';
 import { getErrorMessage } from '../../utilities/message';
+
+import useSignInStyles from './styles';
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const commonClasses = commonStyles();
+  const commonClasses = useCommonStyles();
+  const styles = useSignInStyles();
 
   const signInMutation = useMutation({
     mutationFn: async (data) => {
@@ -38,6 +45,8 @@ const SignIn = () => {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [CURRENT_ADMIN] });
+
       toast.success('Sign in successfully!');
       navigate(ROOT_PATH);
     },
@@ -52,30 +61,16 @@ const SignIn = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        minHeight: '100vh',
-      }}
-      maxWidth='xs'
-    >
+    <Container sx={styles.container} maxWidth='xs'>
       <CssBaseline />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: 1,
-        }}
-      >
-        <SidetimeLogo className={commonClasses.logoIcon} />
+      <Paper sx={styles.signInContainer} elevation={8}>
+        <Icon component={SidetimeLogo} sx={commonClasses.logoIcon} />
 
-        <Typography sx={{ mt: 2 }} variant='h4'>
+        <Typography sx={styles.title} variant='h4'>
           Sidetime Login
         </Typography>
 
-        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: 1 }}>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={styles.formContainer}>
           <TextField
             margin='normal'
             required
@@ -97,10 +92,16 @@ const SignIn = () => {
             autoComplete='current-password'
           />
           <FormControlLabel
-            control={<Checkbox value='remember' name='session[rememberMe]' color='primary' />}
+            control={<Checkbox value='true' name='session[rememberMe]' color='primary' />}
             label='Remember me'
           />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }} disabled={signInMutation.isPending}>
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={styles.submitButton}
+            disabled={signInMutation.isPending}
+          >
             Sign In
           </Button>
           <Grid container>
@@ -111,7 +112,7 @@ const SignIn = () => {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Paper>
     </Container>
   );
 };
