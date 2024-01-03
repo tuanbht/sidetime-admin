@@ -18,6 +18,10 @@ const theme = createTheme({
       main: '#3A57E8',
       hover: '#3a57e84d',
     },
+    whisper: '#F5F6FA',
+    background: {
+      default: '#E9ECEF',
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -33,6 +37,16 @@ const theme = createTheme({
             U+2212, U+2215, U+FEFF;
         }
       `,
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      xxl: 1920,
     },
   },
 });

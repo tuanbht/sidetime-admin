@@ -1,5 +1,10 @@
-import { Avatar, AvatarGroup, Backdrop, Modal } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LinearProgress from '@mui/material/LinearProgress';
+import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -64,58 +69,71 @@ const TopGuides = () => {
       ],
       minuteUsed: 6.0,
       revenue: 24,
-      completion: 4.0,
+      completion: 40,
     },
   ];
 
   return (
     <Box sx={{ mt: 10 }}>
-      <Box sx={styles.tenantNameBox}>
-        <Typography variant='h5' sx={styles.siteName}>
-          Top Guides
-        </Typography>
-        <Typography variant='body2' sx={styles.filterredYear}>
-          15 New Acquired
-        </Typography>
-      </Box>
+      <Grid container columns={{ xs: 1, lg: 3 }}>
+        <Grid item xs={1} lg={2}>
+          <Paper elevation={12}>
+            <Box sx={styles.titleContainer}>
+              <Typography variant='h5' sx={styles.title}>
+                Top Guides
+              </Typography>
+              <Typography variant='body1' sx={styles.subtitle}>
+                15 New Acquired
+              </Typography>
+            </Box>
 
-      <TableContainer component={Paper} sx={{ mt: 4 }}>
-        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-          <TableHead>
-            <TableRow>
-              <TableCell>Guides</TableCell>
-              <TableCell align='right'>Users</TableCell>
-              <TableCell align='right'>Minute Used</TableCell>
-              <TableCell align='right'>Revenue</TableCell>
-              <TableCell align='right'>Completion</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.guide} sx={styles.tableRow}>
-                <TableCell component='th' scope='row' sx={styles.tableGuideCol}>
-                  <Avatar src={row.avatar} alt='Guide Avatar' sx={styles.userAvatar}>
-                    <img src={defaultAvatarUrl} />
-                  </Avatar>
-                  <Typography>{row.guide}</Typography>
-                </TableCell>
-                <TableCell align='right'>
-                  <AvatarGroup total={row.users.length} max={4} onClick={() => handleopenUsersModal(row.users)}>
-                    {row.users.map((user, idx) => (
-                      <Avatar key={idx} alt={user.name} sx={styles.userAvatar}>
-                        {stringAvatarName(user.name)}
-                      </Avatar>
-                    ))}
-                  </AvatarGroup>
-                </TableCell>
-                <TableCell align='right'>{row.minuteUsed}</TableCell>
-                <TableCell align='right'>{row.revenue}</TableCell>
-                <TableCell align='right'>{row.completion}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            <TableContainer>
+              <Table aria-label='top guides'>
+                <TableHead sx={styles.tableHeader}>
+                  <TableRow>
+                    <TableCell>Guides</TableCell>
+                    <TableCell align='right'>Users</TableCell>
+                    <TableCell align='right'>Minute Used</TableCell>
+                    <TableCell align='right'>Revenue</TableCell>
+                    <TableCell align='right'>Completion</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow key={row.guide} sx={styles.tableRow}>
+                      <TableCell component='th' scope='row' sx={styles.tableGuideCol}>
+                        <Avatar src={row.avatar} alt='Guide Avatar' sx={styles.userAvatar}>
+                          <img src={defaultAvatarUrl} />
+                        </Avatar>
+                        <Typography>{row.guide}</Typography>
+                      </TableCell>
+                      <TableCell align='right'>
+                        <AvatarGroup
+                          sx={styles.avatarGroup}
+                          total={row.users.length}
+                          max={4}
+                          onClick={() => handleopenUsersModal(row.users)}
+                        >
+                          {row.users.map((user, idx) => (
+                            <Avatar key={idx} alt={user.name} sx={styles.userAvatar}>
+                              {stringAvatarName(user.name)}
+                            </Avatar>
+                          ))}
+                        </AvatarGroup>
+                      </TableCell>
+                      <TableCell align='right'>{row.minuteUsed}</TableCell>
+                      <TableCell align='right'>{row.revenue}</TableCell>
+                      <TableCell align='right'>
+                        <LinearProgress variant='determinate' value={row.completion} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </Grid>
+      </Grid>
 
       <Modal
         open={openUsersModal}

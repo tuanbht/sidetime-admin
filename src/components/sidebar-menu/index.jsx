@@ -14,8 +14,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/styles';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import SidetimeLogo from '../../assets/images/sidetime-logo.svg?react';
@@ -26,9 +28,14 @@ import SiteMenuItems from './site-menu-items';
 import useSibarMenuStyles from './styles';
 
 const SidebarMenu = ({ children }) => {
+  const theme = useTheme();
+
   const [open, setOpen] = useState(true);
 
+  const isMobile = useMediaQuery(theme.breakpoints.up('md'));
   const sideBarMenuStyles = useSibarMenuStyles(open);
+
+  useEffect(() => setOpen(isMobile), [isMobile]);
 
   const handleMenuIconClick = () => {
     setOpen(!open);
@@ -68,7 +75,7 @@ const SidebarMenu = ({ children }) => {
           <SiteMenuItems open={open} />
         </List>
       </Drawer>
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+      <Box component='main' sx={sideBarMenuStyles.mainContainer}>
         {children}
       </Box>
     </Box>

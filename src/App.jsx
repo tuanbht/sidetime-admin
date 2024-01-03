@@ -2,6 +2,7 @@ import { ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { IntercomProvider } from 'react-use-intercom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import BackJobsWrapper from './components/backjobs-wrapper';
@@ -22,8 +23,10 @@ const App = () => (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <QueryClientProvider client={queryClient}>
-          <BackJobsWrapper />
-          <RouterConfiguration />
+          <IntercomProvider appId={import.meta.env.VITE_INTERCOM_APP_ID} autoBoot>
+            <BackJobsWrapper />
+            <RouterConfiguration />
+          </IntercomProvider>
         </QueryClientProvider>
       </PersistGate>
     </Provider>

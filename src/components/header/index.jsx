@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const Header = () => {
   const handleCloseAvatarMenu = () => setAnchorEl(null);
 
   return (
-    <header className={classes.header}>
+    <Paper component='header' className={classes.header}>
       <div className={classes.search}>
         <div className={classes.searchIconWrapper}>
           <SearchIcon />
@@ -77,7 +78,7 @@ const Header = () => {
           {admin.role || 'Admin'}
         </Typography>
       </div>
-    </header>
+    </Paper>
   );
 };
 

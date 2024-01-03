@@ -8,12 +8,10 @@ const ContainerLayout = ({ container: Container }) => {
   console.log('ContainerLayout');
 
   return (
-    <div>
-      <SidebarMenu>
-        <Header />
-        <Container />
-      </SidebarMenu>
-    </div>
+    <SidebarMenu>
+      <Header />
+      <Container />
+    </SidebarMenu>
   );
 };
 

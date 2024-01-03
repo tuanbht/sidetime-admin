@@ -21,12 +21,21 @@ const useTenantInfosStyles = () => {
       padding: theme.spacing(4, 0),
     },
     siteName: {
-      fontweight: 'bold',
+      fontWeight: 'bold',
       color: theme.palette.common.white,
+
+      [theme.breakpoints.down('md')]: {
+        fontSize: theme.typography.h4,
+      },
     },
     filterredYear: {
       color: theme.palette.common.white,
       boxShadow: 'unset',
+    },
+    yearLabel: {
+      [theme.breakpoints.down('md')]: {
+        fontSize: theme.typography.body1,
+      },
     },
     selectYearButton: {
       background: 'transparent',
@@ -36,18 +45,15 @@ const useTenantInfosStyles = () => {
       },
     },
     cardBlock: {
-      width: '230px',
-      maxWidth: '100%',
       height: '120px',
-      minHeight: '100%',
       padding: theme.spacing(1),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-evenly',
     },
     progressCircle: {
-      width: '50px',
-      height: '50px',
+      width: '40px',
+      height: '40px',
     },
     arrowIcon: {
       top: 0,
@@ -58,11 +64,11 @@ const useTenantInfosStyles = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '50px',
-      height: '50px',
+      width: '40px',
+      height: '40px',
       '& svg': {
-        width: '30px',
-        height: '30px',
+        width: '20px',
+        height: '20px',
         color: theme.palette.hitGray,
       },
     },
