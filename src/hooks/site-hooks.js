@@ -1,14 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import get from 'lodash/get';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import ApiClient from '../configurations/api-client';
-import { buildApiGetSiteInfos } from '../constants/api-paths';
+import { buildApiGetSiteInfos, buildApiGetSiteTopGuides } from '../constants/api-paths';
+import { siteSelector } from '../selectors/site-selector';
 import { randomPercent } from '../utilities/math';
 
-export const useGetSiteInfos = (siteId, year) => {
+export const useGetSiteInfos = (year) => {
+  const { id: siteId } = useSelector(siteSelector);
+
   const [response, setResponse] = useState([
     { label: 'Minutes', key: 'totalMinutes', value: 0, percent: 0 },
     { label: 'Sessions', key: 'totalSessions', value: 0, percent: 0 },
@@ -19,7 +23,7 @@ export const useGetSiteInfos = (siteId, year) => {
   ]);
 
   const query = useQuery({
-    queryKey: [siteId, 'infos', year],
+    queryKey: ['infos', year],
     queryFn: async () => {
       const response = await ApiClient.get(buildApiGetSiteInfos(siteId), { params: { year } });
 
@@ -48,6 +52,44 @@ export const useGetSiteInfos = (siteId, year) => {
           return { ...item, value, percent };
         }),
       );
+    }
+  }, [data]);
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
+  return { ...query, data: response };
+};
+
+export const useGetSiteTopGuides = (year) => {
+  const { id: siteId } = useSelector(siteSelector);
+
+  const query = useQuery({
+    queryKey: [siteId, 'top-guides', year],
+    queryFn: async () => {
+      const response = await ApiClient.get(buildApiGetSiteTopGuides(siteId), { params: { year } });
+
+      return get(response, 'data');
+    },
+  });
+
+  const { data, error } = query;
+
+  const response = useMemo(() => {
+    if (!isEmpty(data)) {
+      const currency = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+
+      return data.map((item) => ({
+        ...item,
+        revenue: currency.format(item.revenue),
+        completion: randomPercent(60, 90),
+      }));
+    } else {
+      return [];
     }
   }, [data]);
 
