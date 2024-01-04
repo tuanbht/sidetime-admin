@@ -4,10 +4,11 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     globals: true,
+    setupFiles: ['./src/setupTests.jsx'],
     environment: 'jsdom',
     coverage: {
       provider: 'v8',
-      exclude: ['src/index.jsx', 'src/setupTests.js'],
+      exclude: ['src/index.jsx', 'src/setupTests.jsx'],
     },
     include: ['src/**/*.test.[jt]s?(x)'],
   },

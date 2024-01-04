@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { vi } from 'vitest';
 
 vi.mock('react-use-intercom', () => {
