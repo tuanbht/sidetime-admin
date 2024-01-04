@@ -57,7 +57,7 @@ const TopGuides = ({ selectedYear }) => {
                   <TableRow>
                     <TableCell>Guides</TableCell>
                     <TableCell align='right'>Users</TableCell>
-                    <TableCell align='right'>Minute Used</TableCell>
+                    <TableCell align='right'>Minutes</TableCell>
                     <TableCell align='right'>Revenue</TableCell>
                     <TableCell align='right'>Completion</TableCell>
                   </TableRow>

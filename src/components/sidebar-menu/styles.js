@@ -108,6 +108,10 @@ const useSibarMenuStyles = (open) => {
     },
     linkItemLabel: {
       opacity: open ? 1 : 0,
+      '& span': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      },
     },
   };
 };
