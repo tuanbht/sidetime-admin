@@ -7,7 +7,7 @@ const useSibarMenuStyles = (open) => {
   const theme = useTheme();
   const commonStyles = useCommonStyles();
 
-  const drawerWidth = 240;
+  const drawerWidth = 280;
 
   const openedMixin = useMemo(
     () => ({
@@ -37,6 +37,7 @@ const useSibarMenuStyles = (open) => {
   );
 
   return {
+    drawerWidth,
     boxContainer: {
       display: 'flex',
     },

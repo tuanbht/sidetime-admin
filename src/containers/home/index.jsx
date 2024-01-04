@@ -6,7 +6,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import headerBackgroundUrl from '../../assets/images/dashboard-header-bg.svg';
@@ -14,8 +16,9 @@ import TenantInfos from '../../components/home/tenant-infos';
 import TopGuides from '../../components/home/top-guides';
 import { siteSelector } from '../../selectors/site-selector';
 
-import { FILTERING_YEARS } from './contants';
+import { CURRENT_YEAR_OPTION } from './contants';
 import useHomeStyles from './styles';
+import { getYearsFromCreatedYear } from './utils';
 
 const Home = () => {
   const styles = useHomeStyles();
@@ -23,8 +26,16 @@ const Home = () => {
   const site = useSelector(siteSelector);
 
   const [yearsMenuEl, setYearsMenuEl] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(FILTERING_YEARS[0]);
+  const [selectedYear, setSelectedYear] = useState(CURRENT_YEAR_OPTION);
   const isYearsMenuOpen = Boolean(yearsMenuEl);
+
+  const yearOptions = useMemo(() => getYearsFromCreatedYear(site.createdYear), [site.createdYear]);
+
+  useEffect(() => {
+    if (!isEmpty(yearOptions)) {
+      find(yearOptions, selectedYear) || setSelectedYear(CURRENT_YEAR_OPTION);
+    }
+  }, [selectedYear, yearOptions]);
 
   const handleCloseYearsMenu = () => {
     setYearsMenuEl(null);
@@ -76,7 +87,7 @@ const Home = () => {
             horizontal: 'right',
           }}
         >
-          {FILTERING_YEARS.map((option, index) => (
+          {yearOptions.map((option, index) => (
             <MenuItem key={index} onClick={() => handleClickYear(option)}>
               {option.label}
             </MenuItem>

@@ -4,4 +4,11 @@ import get from 'lodash/get';
 
 const getSiteState = (state) => get(state, 'site', {});
 
-export const siteSelector = createSelector(getSiteState, (site) => (isEmpty(site) ? {} : site));
+export const siteSelector = createSelector(getSiteState, (site) =>
+  isEmpty(site)
+    ? {}
+    : {
+        ...site,
+        createdYear: new Date(site.createdAt).getFullYear(),
+      },
+);
