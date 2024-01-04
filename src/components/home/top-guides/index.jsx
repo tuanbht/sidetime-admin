@@ -66,7 +66,7 @@ const TopGuides = ({ selectedYear }) => {
                   {data.map((guide, idx) => (
                     <TableRow key={idx} sx={styles.tableRow}>
                       <TableCell component='th' scope='row' sx={styles.tableGuideCol}>
-                        <Avatar src={guide.avatarurl} alt='Guide Avatar' sx={styles.userAvatar}>
+                        <Avatar src={guide.avatarUrl} alt='Guide Avatar' sx={styles.userAvatar}>
                           <img src={defaultAvatarUrl} />
                         </Avatar>
                         <Typography>{guide.name}</Typography>
@@ -79,8 +79,8 @@ const TopGuides = ({ selectedYear }) => {
                           onClick={() => handleopenUsersModal(guide.users)}
                         >
                           {guide.users.map((user, idx) => (
-                            <Avatar key={idx} src={user.avatarUrl} alt={user.userName} sx={styles.userAvatar}>
-                              {stringAvatarName(user.userName)}
+                            <Avatar key={idx} src={user.avatarUrl} alt={user.name} sx={styles.userAvatar}>
+                              {stringAvatarName(user.name)}
                             </Avatar>
                           ))}
                         </AvatarGroup>
@@ -118,10 +118,10 @@ const TopGuides = ({ selectedYear }) => {
           </Typography>
           {modalUsers.map((user, idx) => (
             <Box key={idx} sx={styles.modalUserContainer}>
-              <Avatar alt={user.userName} src={user.avatarUrl} sx={styles.userAvatar}>
+              <Avatar alt={user.name} src={user.avatarUrl} sx={styles.userAvatar}>
                 <img src={defaultAvatarUrl} />
               </Avatar>
-              <Typography>{user.userName}</Typography>
+              <Typography>{user.name}</Typography>
             </Box>
           ))}
         </Box>
